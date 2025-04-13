@@ -12,8 +12,13 @@ const Questions = ({ questions, setCurrentQuestionIndex, currentQuestionIndex, s
   const sentenceParts = currentQ.question.split('_____________');
 
   const onTimeUp = () => {
-    console.log('Time is up!');
-    // You can auto-move to next here if needed
+    const currentAnswers = filledBlanks.map(b => b?.word || '');
+
+  saveAnswer(currentQuestionIndex, currentAnswers);
+
+  setFilledBlanks([null, null, null, null]);
+  setUsedIndices([]);
+  setCurrentQuestionIndex(prev => prev + 1);
   };
 
   const handleOptionClick = (word, index) => {
