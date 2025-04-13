@@ -40,10 +40,6 @@ npm install
 npx json-server --watch db.json --port 3001
 ```
 
-```bash
-npm start
-```
-
 5. Start the Development Server: After the JSON Server is running, start the React development server:
 
 ```bash
