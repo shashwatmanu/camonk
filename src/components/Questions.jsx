@@ -3,16 +3,18 @@ import Timer from './Timer';
 import { Button } from '@mui/material';
 import Steps from './Steps';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useNavigate } from 'react-router-dom';
 
 const Questions = ({ questions, setCurrentQuestionIndex, currentQuestionIndex, saveAnswer}) => {
   const [filledBlanks, setFilledBlanks] = useState([null, null, null, null]);
   const [usedIndices, setUsedIndices] = useState([]);
+  const navigate = useNavigate();
 
   const currentQ = questions[currentQuestionIndex];
   const sentenceParts = currentQ.question.split('_____________');
 
   const onTimeUp = () => {
-    const currentAnswers = filledBlanks.map(b => b?.word || '');
+    const currentAnswers = filledBlanks.map(b => b || '');
 
   saveAnswer(currentQuestionIndex, currentAnswers);
 
@@ -47,9 +49,25 @@ const Questions = ({ questions, setCurrentQuestionIndex, currentQuestionIndex, s
 
   const isNextEnabled = filledBlanks.every(b => b !== null);
 
-  useEffect(() => {
-    console.log(questions);
-  }, [questions]);
+  const handleNextClick = () => {
+    if (!isNextEnabled) return;
+    saveAnswer(currentQuestionIndex, filledBlanks);
+  
+   
+    setFilledBlanks([null, null, null, null]);
+    setUsedIndices([]);
+  
+    
+    if (currentQuestionIndex === questions.length - 1) {
+    
+      navigate('/results');
+    } else {
+      
+      setCurrentQuestionIndex(prev => prev + 1);
+    }
+  };
+
+
 
   return (
     <div style={{ height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -134,14 +152,7 @@ const Questions = ({ questions, setCurrentQuestionIndex, currentQuestionIndex, s
               cursor: isNextEnabled ? 'pointer' : 'default',
               backgroundColor:isNextEnabled?'rgba(69, 63, 225, 1)':''
             }}
-            onClick={() => {
-              if (!isNextEnabled) return;
-              saveAnswer(currentQuestionIndex, filledBlanks);
-              setFilledBlanks([null, null, null, null]);
-              setUsedIndices([]);
-              setCurrentQuestionIndex(prev => prev + 1);
-
-            }}
+            onClick={handleNextClick}
           >
             <ArrowForwardIcon sx={{ color:'rgba(223, 227, 227, 1)'}} />
           </div>
