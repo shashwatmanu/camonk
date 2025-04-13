@@ -50,4 +50,4 @@ npm start
 npm run dev
 ```
 
-6. Open your browser and go to http://localhost:3000 to view the app.
+6. Open your browser and go to http://localhost:5173 to view the app.
