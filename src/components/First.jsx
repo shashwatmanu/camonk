@@ -1,42 +1,48 @@
-import React from 'react'
+import React from 'react';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import Button from '@mui/material/Button';
+import './First.css';
 
-const First = ({setIsQuizStarted}) => {
-
-
+const First = ({ setIsQuizStarted }) => {
   return (
-   <>
-   <div style={{width:'100vw', height:'100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <div style={{height:'472px', width:'627px'}}>
-        <div style={{justifySelf:'center'}}>
-        <EditNoteIcon fontSize='large' style={{color:'gray'}}/>
+    <div className="first-wrapper">
+      <div className="first-card">
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <EditNoteIcon fontSize="large" style={{ color: 'gray' }} />
         </div>
-       <p style={{fontWeight:'600', fontSize:'40px', textAlign:'center', marginTop:'20px'}}>Sentence Construction</p>
-       <p style={{fontWeight:'400', fontSize:'20px', color:'rgba(124, 129, 129, 1)', textAlign:'center', marginBottom:'40px'}}>Select the correct words to complete the sentence by arranging the provided options in the right order.</p>
 
-       <div style={{display:'flex', justifyContent:'space-around'}}>
+        <p style={{ fontWeight: 600, fontSize: '40px', textAlign: 'center', marginTop: '20px' }}>
+          Sentence Construction
+        </p>
 
-        <div style={{display:'flex', flexDirection:'column'}}>
-            <p style={{fontWeight:'500', fontSize:'20px', textAlign:'center'}}>Time Per Question</p>
-            <p style={{fontWeight:'500', fontSize:'18px', color:'rgba(124, 129, 129, 1)', textAlign:'center'}}>30 seconds</p>
+        <p className="description">
+          Select the correct words to complete the sentence by arranging the provided options in the right order.
+        </p>
+
+        <div className="first-info-box">
+          <div>
+            <p className="info-title">Time Per Question</p>
+            <p className="info-value">30 seconds</p>
+          </div>
+
+          <div>
+            <p className="info-title">Total Questions</p>
+            <p className="info-value">10</p>
+          </div>
         </div>
-        <hr style={{color:'rgba(124, 129, 129, 1)'}}/>
-        <div style={{display:'flex', flexDirection:'column'}}>
-            <p style={{fontWeight:'500', fontSize:'20px', textAlign:'center'}}>Total Questions</p>
-            <p style={{fontWeight:'500', fontSize:'18px', color:'rgba(124, 129, 129, 1)', textAlign:'center'}}>10</p>
+
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <Button
+            onClick={() => setIsQuizStarted(true)}
+            variant="contained"
+            className="start-button"
+          >
+            Start
+          </Button>
         </div>
-    
-       </div>
-
-       <div style={{justifySelf:'center', marginTop:'20px'}}>
-        <Button onClick={()=> setIsQuizStarted(true)} variant='contained' sx={{backgroundColor:'rgba(69, 63, 225, 1)', width:'140px', height:'42px', borderRadius:'8px'}}>Start</Button>
-       </div>
-
       </div>
     </div>
-   </>
-  )
-}
+  );
+};
 
-export default First
+export default First;

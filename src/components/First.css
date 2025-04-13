@@ -1,0 +1,47 @@
+.first-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .first-card {
+    width: 627px;
+    height: 472px;
+  }
+  
+  .description {
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(124, 129, 129, 1);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .first-info-box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .info-title {
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .info-value {
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(124, 129, 129, 1);
+    text-align: center;
+  }
+  
+  .start-button {
+    background-color: rgba(69, 63, 225, 1);
+    width: 140px;
+    height: 42px;
+    border-radius: 8px;
+  }
+  
