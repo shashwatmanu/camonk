@@ -73,6 +73,7 @@ const App = () => {
             resetQuizState={() => {
             setUserAnswers([]);
             setCurrentQuestionIndex(0);
+            setIsQuizStarted(false);
           }}
         />
           <Results userAnswers={userAnswers} questions={questions}/>
