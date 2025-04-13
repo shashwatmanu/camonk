@@ -87,15 +87,17 @@ const Results = ({ userAnswers, questions }) => {
         </div>
 
         {questions.map((q, index) => {
+          const userResponse = userAnswers[index] || [];
+          const isAllNull = userResponse.every(ans => ans === null);
           const isCorrect = q.correctAnswer.every(
-            (word, i) => word === (userAnswers[index] || [])[i]
+            (word, i) => word === userResponse[i]
           );
 
           return (
             <div
               key={q.questionId}
               style={{
-                height: '256px',
+                height: isAllNull ? '200px' : '256px',
                 width: '700px',
                 backgroundColor: 'rgba(246, 249, 249, 1)',
                 alignSelf: 'center',
@@ -105,6 +107,8 @@ const Results = ({ userAnswers, questions }) => {
                 flexDirection: 'column',
                 boxShadow: isCorrect
                   ? '0px 4px 70px rgba(66, 169, 76, 0.1)'
+                  : isAllNull
+                  ? '0px 4px 70px rgba(255, 221, 51, 0.2)'
                   : '0px 4px 70px rgba(203, 53, 62, 0.1)',
               }}
             >
@@ -149,7 +153,7 @@ const Results = ({ userAnswers, questions }) => {
                 <div
                   style={{
                     alignSelf: 'center',
-                    marginTop: '20px',
+                    marginTop: '10px',
                     marginBottom: '20px',
                     textAlign: 'center',
                     padding: '10px',
@@ -171,34 +175,41 @@ const Results = ({ userAnswers, questions }) => {
                   Your response{' '}
                   <span
                     style={{
-                      color: isCorrect
+                      color: isAllNull
+                        ? 'rgba(155, 140, 0, 1)'
+                        : isCorrect
                         ? 'rgba(49, 127, 57, 1)'
                         : 'rgba(158, 41, 48, 1)',
-                      backgroundColor: isCorrect
+                      backgroundColor: isAllNull
+                        ? 'rgba(255, 249, 196, 1)'
+                        : isCorrect
                         ? 'rgba(238, 251, 239, 1)'
                         : 'rgba(252, 235, 236, 1)',
                       borderRadius: '16px',
                       padding: '2px 4px',
                     }}
                   >
-                    {isCorrect ? 'Correct' : 'Incorrect'}
+                    {isAllNull
+                      ? 'No answer provided'
+                      : isCorrect
+                      ? 'Correct'
+                      : 'Incorrect'}
                   </span>
                 </div>
-                <div
-                  style={{
-                    alignSelf: 'center',
-                    marginTop: '20px',
-                    marginBottom: '20px',
-                    textAlign: 'center',
-                    padding: '10px',
-                  }}
-                >
-                  {(userAnswers && userAnswers.length > 0) ? (
-                    fillInTheBlanksReact(q.question, userAnswers[index])
-                  ) : (
-                    <i>No answer provided</i>
-                  )}
-                </div>
+
+                {!isAllNull && (
+                  <div
+                    style={{
+                      alignSelf: 'center',
+                      marginTop: '10px',
+                      marginBottom: '20px',
+                      textAlign: 'center',
+                      padding: '10px',
+                    }}
+                  >
+                    {fillInTheBlanksReact(q.question, userResponse)}
+                  </div>
+                )}
               </div>
             </div>
           );
