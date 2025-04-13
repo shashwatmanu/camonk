@@ -22,8 +22,11 @@ const App = () => {
   };
 
   useEffect(() => {
+    const isProd = import.meta.env.PROD;
+    const baseUrl = isProd ? '' : 'http://localhost:3001';
+  
     axios
-      .get('http://localhost:3001/data')
+      .get(`${baseUrl}/data`)
       .then((res) => {
         setQuestions(res.data.questions);
       })
