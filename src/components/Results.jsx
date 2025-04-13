@@ -12,7 +12,7 @@ const Results = ({ userAnswers, questions }) => {
 
   const percentage = (totalCorrect / questions.length) * 100;
 
-  const fillInTheBlanksReact = (sentence, words) => {
+  const fillInTheBlanks = (sentence, words) => {
     const parts = sentence.split(/(_____________)/g);
     let wordIndex = 0;
 
@@ -103,7 +103,7 @@ const Results = ({ userAnswers, questions }) => {
                   </div>
                 </div>
                 <div className="answer-container">
-                  {fillInTheBlanksReact(q.question, q.correctAnswer)}
+                  {fillInTheBlanks(q.question, q.correctAnswer)}
                 </div>
               </div>
 
@@ -123,7 +123,7 @@ const Results = ({ userAnswers, questions }) => {
 
                 {!isAllNull && (
                   <div className="answer-container">
-                    {fillInTheBlanksReact(q.question, userResponse)}
+                    {fillInTheBlanks(q.question, userResponse)}
                   </div>
                 )}
               </div>
