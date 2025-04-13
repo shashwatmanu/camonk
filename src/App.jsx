@@ -38,26 +38,45 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar />
+      
       <Routes>
         <Route
           path="/"
           element={
             !isQuizStarted ? (
+              <>
+              <Navbar />
               <First setIsQuizStarted={setIsQuizStarted} />
+              </>
+             
             ) : (
               <Questions
                 setCurrentQuestionIndex={setCurrentQuestionIndex}
                 questions={questions}
                 currentQuestionIndex={currentQuestionIndex}
                 saveAnswer={saveAnswer}
+                resetQuizState={() => {
+                  setUserAnswers([]);
+                  setCurrentQuestionIndex(0);
+                  setIsQuizStarted(false);
+                }}
               />
             )
           }
         />
         <Route
           path="/results"
-          element={<Results userAnswers={userAnswers} questions={questions}/>} 
+          element={
+            <>
+           <Navbar
+            isResultsPage={true}
+            resetQuizState={() => {
+            setUserAnswers([]);
+            setCurrentQuestionIndex(0);
+          }}
+        />
+          <Results userAnswers={userAnswers} questions={questions}/>
+          </>} 
         />
       </Routes>
     </Router>

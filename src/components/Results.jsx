@@ -75,6 +75,7 @@ const Results = ({ userAnswers, questions }) => {
                 fontSize: '18px',
                 color: 'rgba(42, 45, 45, 1)',
                 textAlign: 'center',
+                marginBottom:' 60px',
               }}
             >
               <p style={{ marginTop: '40px' }}>
@@ -101,14 +102,15 @@ const Results = ({ userAnswers, questions }) => {
                 width: '700px',
                 backgroundColor: 'rgba(246, 249, 249, 1)',
                 alignSelf: 'center',
-                marginTop: '60px',
+                marginTop: '30px',
+                marginBottom:' 30px',
                 borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
                 boxShadow: isCorrect
                   ? '0px 4px 70px rgba(66, 169, 76, 0.1)'
                   : isAllNull
-                  ? '0px 4px 70px rgba(255, 221, 51, 0.2)'
+                  ? '0px 4px 70px rgba(255, 221, 51, 0.1)'
                   : '0px 4px 70px rgba(203, 53, 62, 0.1)',
               }}
             >
@@ -153,7 +155,7 @@ const Results = ({ userAnswers, questions }) => {
                 <div
                   style={{
                     alignSelf: 'center',
-                    marginTop: '10px',
+                    marginTop: '5px',
                     marginBottom: '20px',
                     textAlign: 'center',
                     padding: '10px',
@@ -190,7 +192,7 @@ const Results = ({ userAnswers, questions }) => {
                     }}
                   >
                     {isAllNull
-                      ? 'No answer provided'
+                      ? 'No Answer provided'
                       : isCorrect
                       ? 'Correct'
                       : 'Incorrect'}
