@@ -34,14 +34,20 @@ cd sentence-construction-app
 npm install
 ```
 
-4. Start the development server:
+4. Start the JSON Server: The app requires a mock API to be running during development. To start the JSON Server, run:
+
+```bash
+npx json-server --watch db.json --port 3001
+```
 
 ```bash
 npm start
 ```
 
-5. Visit the app in your browser:
+5. Start the Development Server: After the JSON Server is running, start the React development server:
 
-```arduino
-http://localhost:3000
+```bash
+npm run dev
 ```
+
+6. Open your browser and go to http://localhost:3000 to view the app.
