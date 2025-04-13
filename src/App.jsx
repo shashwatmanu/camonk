@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import First from './components/First';
 import Questions from './components/Questions';
-import Results from './components/Results'; // Assuming you have a Results component
+import Results from './components/Results'; 
+import mockData from '../db.json';
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
@@ -22,18 +23,24 @@ const App = () => {
   };
 
   useEffect(() => {
-    const isProd = import.meta.env.PROD;
-    const baseUrl = isProd ? '' : 'http://localhost:3001';
-  
-    axios
-      .get(`${baseUrl}/data`)
-      .then((res) => {
-        setQuestions(res.data.questions);
-      })
-      .catch((err) => {
-        console.error('Error fetching questions:', err);
-      });
+    const isLocalhost = window.location.hostname === 'localhost';
+
+    if (isLocalhost) {
+      // Fetch data from local json-server when running locally
+      axios
+        .get('http://localhost:3001/data')
+        .then((res) => {
+          setQuestions(res.data.questions);
+        })
+        .catch((err) => {
+          console.error('Error fetching questions from json-server:', err);
+        });
+    } else {
+      // Use mock data when deployed on Vercel
+      setQuestions(mockData.data.questions);
+    }
   }, []);
+
 
   return (
     <Router>
