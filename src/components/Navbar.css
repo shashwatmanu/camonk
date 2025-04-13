@@ -1,0 +1,33 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0px 5px 36px rgba(0, 0, 0, 0.08);
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    padding: 0 16px;
+  }
+  
+  .navbar-icon-wrapper,
+  .navbar-icon-placeholder {
+    width: 40px;
+  }
+  
+  .navbar-back-icon {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .navbar-title {
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .navbar-title p {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0;
+  }
+  
