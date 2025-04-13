@@ -22,10 +22,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(userAnswers);
-  }, [userAnswers]);
-
-  useEffect(() => {
     axios
       .get('http://localhost:3001/data')
       .then((res) => {
